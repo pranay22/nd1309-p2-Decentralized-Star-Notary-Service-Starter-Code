@@ -99,8 +99,13 @@ it('lets 2 users exchange stars', async() => {
 
 it('lets a user transfer a star', async() => {
     // 1. create a Star with different tokenId
+    let starId = 9;
+    await instance.createStar('awesome star', starId, { from: user1 });
     // 2. use the transferStar function implemented in the Smart Contract
+    await instance.transferStar(user2, starId, { from: user1 });
     // 3. Verify the star owner changed.
+    let newStarOwner = await instance.ownerOf.call(starId);
+    assert.equal(user2, newStarOwner);
 });
 
 it('lookUptokenIdToStarInfo test', async() => {
