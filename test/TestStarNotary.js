@@ -110,6 +110,11 @@ it('lets a user transfer a star', async() => {
 
 it('lookUptokenIdToStarInfo test', async() => {
     // 1. create a Star with different tokenId
+    let starId = 10;
+    let otherName = 'another awesome star'
+    await instance.createStar(expectedName, starId, { from: user1 });
     // 2. Call your method lookUptokenIdToStarInfo
+    let lookedUpName = await instance.lookUptokenIdToStarInfo(starId);
     // 3. Verify if you Star name is the same
+    assert.equal(lookedUpName, expectedName);
 });
