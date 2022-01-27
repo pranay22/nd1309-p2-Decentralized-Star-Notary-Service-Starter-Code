@@ -8,6 +8,8 @@ contract('StarNotary', (accs) => {
     owner = accounts[0];
 });
 
+
+
 it('can Create a Star', async() => {
     let tokenId = 1;
     let instance = await StarNotary.deployed();
@@ -76,6 +78,8 @@ it('lets user2 buy a star and decreases its balance in ether', async() => {
 // Implement Task 2 Add supporting unit tests
 
 it('can add the star name and star symbol properly', async() => {
+    let instance = await StarNotary.deployed();
+    let user1 = accounts[1];
     // 1. create a Star with different tokenId
     let starId = 6;
     await instance.createStar('awesome star', starId, { from: user1 });
@@ -85,6 +89,9 @@ it('can add the star name and star symbol properly', async() => {
 });
 
 it('lets 2 users exchange stars', async() => {
+    let instance = await StarNotary.deployed();
+    let user1 = accounts[1];
+    let user2 = accounts[2];
     // 1. create 2 Stars with different tokenId
     let starId1 = 7;
     let starId2 = 8;
@@ -98,6 +105,9 @@ it('lets 2 users exchange stars', async() => {
 });
 
 it('lets a user transfer a star', async() => {
+    let instance = await StarNotary.deployed();
+    let user1 = accounts[1];
+    let user2 = accounts[2];
     // 1. create a Star with different tokenId
     let starId = 9;
     await instance.createStar('awesome star', starId, { from: user1 });
@@ -109,6 +119,8 @@ it('lets a user transfer a star', async() => {
 });
 
 it('lookUptokenIdToStarInfo test', async() => {
+    let instance = await StarNotary.deployed();
+    let user1 = accounts[1];
     // 1. create a Star with different tokenId
     let starId = 10;
     let otherName = 'another awesome star'
